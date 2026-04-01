@@ -35,3 +35,8 @@ In this stage we load optimal parameters (best_xxx.pth) of the four individual e
 
 ### 3、Model Training
 ----------------------------------------------------------
+After the pretrained expert parameters are loaded into the corresponding FF-MoE branches to initialize the expert modules, which the expert weights are frozen. The gating network is then trained to adaptively assign expert weights and fusion the output of different exports for final prediction. Finally, the best FF-MoE parameters on the validation set are selected for subsequent testing or few-shot evaluation. This script is train_moe_tfcnn_supcon_explain_closedloop_v2.py
+
+### 4、Few-shot evaluation
+----------------------------------------------------------
+After training, the script export_hfusion_supcon_closedloop_v2_consistent.py is used to export the learned FF-MoE representations into a unified feature file for downstream few-shot evaluation. This step converts the trained model outputs into consistent embeddings and metadata (e.g., labels and file identifiers), which avoids repeated full forward inference during episodic evaluation and ensures compatibility with the existing few-shot evaluation protocol. Based on the exported feature file, the downstream script (downstream_fssei_fewshot_SNR.py) is then applied to constract episodic tasks under different shot settings and to assess the final FS-SEI performance in a consistent and reproducible manner.
