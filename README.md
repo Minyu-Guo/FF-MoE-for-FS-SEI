@@ -40,3 +40,7 @@ After the pretrained expert parameters are loaded into the corresponding FF-MoE 
 ### 4、Few-shot evaluation
 ----------------------------------------------------------
 After training, the script export_hfusion_supcon_closedloop_v2_consistent.py is used to export the learned FF-MoE representations into a unified feature file for downstream few-shot evaluation. This step converts the trained model outputs into consistent embeddings and metadata (e.g., labels and file identifiers), which avoids repeated full forward inference during episodic evaluation and ensures compatibility with the existing few-shot evaluation protocol. Based on the exported feature file, the downstream script (downstream_fssei_fewshot_SNR.py) is then applied to constract episodic tasks under different shot settings and to assess the final FS-SEI performance in a consistent and reproducible manner.
+
+## Visual
+----------------------------------------------------------
+To 
